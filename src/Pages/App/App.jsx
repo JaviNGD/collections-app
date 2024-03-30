@@ -1,4 +1,5 @@
 import { useRoutes, BrowserRouter } from 'react-router-dom'
+import { CollectionsAppProvider } from '../../Context/Context'
 import Home from '../Home/Home'
 import Account from '../Account/Account'
 import Collections from '../Collections/Collections'
@@ -22,10 +23,12 @@ const AppRoutes = () => {
 
 function App() {
   return (
-    <BrowserRouter>
-      <Navbar />
-      <AppRoutes />
-    </BrowserRouter>
+    <CollectionsAppProvider>
+      <BrowserRouter>
+        <Navbar />
+        <AppRoutes />
+      </BrowserRouter>
+    </CollectionsAppProvider>
   )
 }
 

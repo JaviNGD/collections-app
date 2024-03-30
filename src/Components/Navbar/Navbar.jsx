@@ -1,7 +1,10 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { CollectionsAppContext } from "../../Context/Context";
 
 const Navbar = () => {
     const activeStyle = 'font-semibold';
+    const context = useContext(CollectionsAppContext);
 
     return (
         <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light">
@@ -36,7 +39,7 @@ const Navbar = () => {
                     </NavLink>
                 </li>
                 <li>
-                    📌 0
+                    📌 {context.count}
                 </li>
             </ul>
         </nav>

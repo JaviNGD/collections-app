@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import Layout from "../../Components/Layout/Layout";
 import Card from "../../Components/Card/Card";
+import ShowDetail from "../../Components/ShowDetail/ShowDetail";
 
-const apiUrl = 'https://fakestoreapi.com';
+const apiUrl = 'https://api.tvmaze.com/shows';
 
 function Home() {
     const [items, setItems] = useState([]);
@@ -10,7 +11,7 @@ function Home() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`${apiUrl}/products`)
+                const response = await fetch(`${apiUrl}`)
                 const data = await response.json()
                 setItems(data)
             } catch (error) {
@@ -30,6 +31,7 @@ function Home() {
                     ))
                 }
             </div>
+            <ShowDetail />
         </Layout>
     )
 }

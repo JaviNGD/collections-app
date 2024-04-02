@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Layout from "../../Components/Layout/Layout";
 import Card from "../../Components/Card/Card";
 import ShowDetail from "../../Components/ShowDetail/ShowDetail";
+import CreateCollection from "../../Components/CreateCollection/CreateCollection";
 
 const apiUrl = 'https://api.tvmaze.com/shows';
 
@@ -32,6 +33,7 @@ function Home() {
                 }
             </div>
             <ShowDetail />
+            <CreateCollection />
         </Layout>
     )
 }

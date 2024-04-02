@@ -6,7 +6,7 @@ import { HiMiniComputerDesktop } from "react-icons/hi2";
 
 const Navbar = () => {
     const activeStyle = 'font-semibold';
-    const context = useContext(CollectionsAppContext);
+    const { totalItems } = useContext(CollectionsAppContext);
 
     return (
         <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light">
@@ -43,7 +43,7 @@ const Navbar = () => {
                 </li>
                 <li className="flex">
                     <HiMiniComputerDesktop className="w-6 h-6 p-1"/>
-                    <div>{context.count}</div>
+                    <div>{totalItems}</div>
                 </li>
             </ul>
         </nav>

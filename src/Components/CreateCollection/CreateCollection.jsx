@@ -15,7 +15,7 @@ const CreateCollection = () => {
             <h2 className='font-medium text-xl'>Create collection</h2>
             <div>
             <IoClose
-                className='h-6 w-6 text-black cursor-pointer'
+                className='h-6 w-6 text-black cursor-pointer hover:text-red-500'
                 onClick={() => closeCheckoutSideMenu()}/>
             </div>
         </div>
@@ -37,6 +37,7 @@ const CreateCollection = () => {
                 <HiMiniComputerDesktop className="w-7 h-7 mr-2"/>
                 <p>Total programs: </p>
                 <p className='font-semibold ml-2'>{totalItems}</p>
+                <button className='absolute right-0 mr-7'>Create</button>
         </div>
         </aside>
     )

@@ -6,7 +6,7 @@ import { HiMiniComputerDesktop } from "react-icons/hi2";
 
 const Navbar = () => {
     const activeStyle = 'font-semibold';
-    const { totalItems } = useContext(CollectionsAppContext);
+    const { totalItems, toggleCheckoutSideMenu } = useContext(CollectionsAppContext);
 
     return (
         <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light">
@@ -41,7 +41,10 @@ const Navbar = () => {
                         Sign In
                     </NavLink>
                 </li>
-                <li className="flex">
+                <li 
+                    className="flex hover:text-blue-500 cursor-pointer"
+                    onClick={toggleCheckoutSideMenu}
+                >
                     <HiMiniComputerDesktop className="w-6 h-6 p-1"/>
                     <div>{totalItems}</div>
                 </li>

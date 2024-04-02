@@ -19,19 +19,46 @@ export const CollectionsAppProvider = ({children}) => {
     const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false)
     const openCheckoutSideMenu = () => {setIsCheckoutSideMenuOpen(true)}
     const closeCheckoutSideMenu = () => {setIsCheckoutSideMenuOpen(false)}
+    const toggleCheckoutSideMenu = () => {setIsCheckoutSideMenuOpen(!isCheckoutSideMenuOpen)}
 
     // Item detail - Show item detail
     const [itemToShow, setItemToShow] = useState({})
 
-    // Collection cart - Add items to cart
+    // Collection cart - state
     const [cartItems, setCartItems] = useState([])
 
-    // Collection cart - Handle delete
+    // Collection cart - Add / Delete item from cart
+    const toggleItemInCollection = (event, data) => {
+        event.stopPropagation()
+        const itemIndex = cartItems.findIndex(item => item.id === data.id);
+        if (itemIndex !== -1) {
+            // If the item is in the cart, then we remove it
+            const newCartItems = cartItems.filter(item => item.id !== data.id);
+            setCartItems(newCartItems);
+            setTotalItems(totalItems - 1);
+        } else {
+            // Else we add it to the cart
+            setCartItems([...cartItems, data]);
+            setTotalItems(totalItems + 1);
+            openCheckoutSideMenu();
+        }
+    };
+
+    // Collection cart - Delete item from cart
     const deleteItem = (event, id) => {
         event.stopPropagation()
         const newCartItems = cartItems.filter(item => item.id !== id)
         setCartItems(newCartItems)
         totalItems > 0 ? setTotalItems(totalItems - 1) : null
+    }
+
+    // Collection cart - create collection
+    const [collection, setCollection] = useState([])
+    
+    const createCollection = (collectionName) => {
+        setCollection([...collection, {name: collectionName, items: cartItems}])
+        setCartItems([])
+        setTotalItems(0)
     }
 
     return (
@@ -48,11 +75,16 @@ export const CollectionsAppProvider = ({children}) => {
             setIsCheckoutSideMenuOpen,
             openCheckoutSideMenu,
             closeCheckoutSideMenu,
+            toggleCheckoutSideMenu,
             itemToShow,
             setItemToShow,
             cartItems,
             setCartItems,
-            deleteItem
+            toggleItemInCollection,
+            deleteItem,
+            collection,
+            setCollection,
+            createCollection,
         }}>
             {children}
         </CollectionsAppContext.Provider>

@@ -4,7 +4,7 @@ import { IoMdAdd } from "react-icons/io";
 import { FaCheck } from "react-icons/fa";
 
 const Card = ({ data }) => {
-    const { cartItems, setCartItems, setDataToShow, openShowDetail, totalItems, setTotalItems, openCheckoutSideMenu, deleteItem} = useContext(CollectionsAppContext);
+    const { cartItems,  setDataToShow, openShowDetail, toggleItemInCollection} = useContext(CollectionsAppContext);
 
     // Send data to ShowDetail component
     const showDetail = () => {
@@ -12,15 +12,7 @@ const Card = ({ data }) => {
         openShowDetail()
     }
 
-    // Add item to collection
-    const addItemToCollection = (event, itemData) => {
-        event.stopPropagation()
-        setTotalItems(totalItems + 1)
-        setCartItems([...cartItems, itemData])
-        openCheckoutSideMenu()
-    }
-
-    //
+    // Check if item is in cart
     const isInCart = cartItems.filter(item => item.id === data.id).length > 0
 
     return (
@@ -35,23 +27,10 @@ const Card = ({ data }) => {
                     className="w-full h-full object-cover rounded-lg"
                     src={data.image?.medium} 
                     alt={data.name}
-                    />
-                {
-                    isInCart ? 
-                    <div 
-                        className="absolute top-0 right-0 flex justify-center items-center bg-white text-green-500 w-6 h-6 rounded-full m-2"
-                        onClick={(event) => deleteItem(event, data.id)}
-                    >
-                        <FaCheck />
-                    </div>
-                    :
-                    <div 
-                        className="absolute top-0 right-0 flex justify-center items-center bg-white hover:text-green-500 w-6 h-6 rounded-full m-2"
-                        onClick={(event) => addItemToCollection(event, data)}
-                    >
-                        <IoMdAdd />
-                    </div>
-                }
+                />
+                <button onClick={(event) => toggleItemInCollection(event, data)} className='absolute top-0 right-0 flex justify-center items-center bg-white shadow-md text-black w-6 h-6 rounded-full m-2'>
+                    {isInCart ? <FaCheck className='text-green-500' /> : <IoMdAdd className='hover:text-green-500'/>}
+                </button>
             </figure>
             <p className="flex justify-between">
                 <span className="text-lg font-medium p-2">{data.name}</span>

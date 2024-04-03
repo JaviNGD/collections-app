@@ -4,7 +4,6 @@ import { CollectionsAppContext } from "../../Context/Context";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
-import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 
 function MyCollections() {
     const { collection } = useContext(CollectionsAppContext);
@@ -19,9 +18,8 @@ function MyCollections() {
             </div>
             {
                 collection.map((collection, index) => (
-                    <Link key={index} to={`/my-collections/${collection.id}`}>
+                    <Link key={index} to={`/my-collections/${index}`}>
                         <CollectionsCard key={index} date={collection.date} name={collection.name} totalItems={collection.totalItems} />
-                        <MdOutlineKeyboardDoubleArrowRight />
                     </Link>
                 ))
             }

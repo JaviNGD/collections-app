@@ -18,7 +18,7 @@ function MyCollections() {
             </div>
             {
                 collection.map((collection, index) => (
-                    <Link key={index} to={`/my-collections/${index}`}>
+                    <Link key={index} to={`/collection/${index}`}>
                         <CollectionsCard key={index} date={collection.date} name={collection.name} totalItems={collection.totalItems} />
                     </Link>
                 ))

@@ -78,6 +78,7 @@ export const CollectionsAppProvider = ({children}) => {
         }
         setCollection([...collection, collectionToAdd])
         closeCheckoutSideMenu()
+        closeShowDetail()
         setCollectionName('')
         setCartItems([])
         setTotalItems(0)

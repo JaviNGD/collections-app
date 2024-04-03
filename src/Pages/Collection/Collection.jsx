@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import ItemCard from "../../Components/ItemCard/ItemCard";
 import Layout from "../../Components/Layout/Layout"
 import { IoIosArrowBack } from "react-icons/io";
+import { FaRegFolderOpen } from "react-icons/fa6";
+import { HiMiniComputerDesktop } from "react-icons/hi2";
+import { FaRegCalendarAlt } from "react-icons/fa";
 
 function Collection() {
     const { collection } = useContext(CollectionsAppContext);
@@ -21,9 +24,11 @@ function Collection() {
             </div>
             {latestCollection && (
                 <div className='flex flex-col'>
-                    <h1>{latestCollection.name}</h1>
-                    <p>{latestCollection.date}</p>
-                    <p>{latestCollection.totalItems}</p>
+                <p>
+                    <div className="flex items-center"><FaRegFolderOpen className="mr-2"/> {latestCollection.name}</div>
+                    <div className="flex items-center"><HiMiniComputerDesktop className="mr-2"/> {latestCollection.totalItems}</div>
+                    <div className="flex items-center"><FaRegCalendarAlt className="mr-2"/> {latestCollection.date}</div>
+                </p>
                     {latestCollection.items.map(item => 
                         <ItemCard key={item.id} data={item} />
                     )}

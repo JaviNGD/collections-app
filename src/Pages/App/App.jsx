@@ -13,7 +13,8 @@ const AppRoutes = () => {
   let routes = useRoutes([
     { path : '/', element: <Home /> },
     { path : '/account', element: <Account /> },
-    { path : '/collection', element: <Collection /> },
+    { path : '/collection', element: <MyCollections /> },
+    { path : '/collection/:index', element: <Collection /> },
     { path : '/my-collections', element: <MyCollections /> },
     { path : '/my-collections/latest', element: <Collection /> },
     { path : '/sign-in', element: <SignIn /> },

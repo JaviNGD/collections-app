@@ -2,8 +2,8 @@ import { useRoutes, BrowserRouter } from 'react-router-dom'
 import { CollectionsAppProvider } from '../../Context/Context'
 import Home from '../Home/Home'
 import Account from '../Account/Account'
-import Collections from '../Collections/Collections'
-import CreateCollection from '../CreateCollection/CreateCollection'
+import Collection from '../Collection/Collection'
+import MyCollections from '../MyCollections/MyCollections'
 import SignIn from '../SignIn/SignIn'
 import NotFound from '../NotFound/NotFound'
 import Navbar from '../../Components/Navbar/Navbar'
@@ -13,8 +13,9 @@ const AppRoutes = () => {
   let routes = useRoutes([
     { path : '/', element: <Home /> },
     { path : '/account', element: <Account /> },
-    { path : '/collections', element: <Collections /> },
-    { path : '/create-collection', element: <CreateCollection /> },
+    { path : '/collection', element: <Collection /> },
+    { path : '/my-collections', element: <MyCollections /> },
+    { path : '/my-collections/latest', element: <Collection /> },
     { path : '/sign-in', element: <SignIn /> },
     { path : '*', element: <NotFound /> }
   ])

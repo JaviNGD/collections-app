@@ -1,12 +1,11 @@
 import Layout from "../../Components/Layout/Layout"
 
-function Collections() {
+function MyCollections() {
     return (
         <Layout>
-            Collections
+            My Collections
         </Layout>
     )
 }
 
-export default Collections
-
+export default MyCollections

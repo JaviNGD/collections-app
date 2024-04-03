@@ -52,11 +52,33 @@ export const CollectionsAppProvider = ({children}) => {
         totalItems > 0 ? setTotalItems(totalItems - 1) : null
     }
 
+    // Collection cart - handle create collection
+
     // Collection cart - create collection
     const [collection, setCollection] = useState([])
-    
-    const createCollection = (collectionName) => {
-        setCollection([...collection, {name: collectionName, items: cartItems}])
+    const [collectionName, setCollectionName] = useState('');
+
+    // Collection cart - if collection name or cart is empty, alert user else create collection
+    const handleClickCreate = () => {
+        if (collectionName === '') {
+            alert('Please enter a collection name')
+        } else if (cartItems.length === 0) {
+            alert('Please add items to the collection')
+        } else {
+            handleCreate(collectionName)
+        }
+    }
+
+    const handleCreate = (collectionName) => {
+        const collectionToAdd = {
+            date: new Date().toLocaleDateString(),
+            name: collectionName !== '' ? collectionName : 'Collection',
+            items: cartItems,
+            totalItems: totalItems
+        }
+        setCollection([...collection, collectionToAdd])
+        closeCheckoutSideMenu()
+        setCollectionName('')
         setCartItems([])
         setTotalItems(0)
     }
@@ -84,7 +106,10 @@ export const CollectionsAppProvider = ({children}) => {
             deleteItem,
             collection,
             setCollection,
-            createCollection,
+            collectionName,
+            setCollectionName,
+            handleClickCreate,
+            handleCreate
         }}>
             {children}
         </CollectionsAppContext.Provider>

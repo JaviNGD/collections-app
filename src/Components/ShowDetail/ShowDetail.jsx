@@ -43,9 +43,11 @@ const ShowDetail = () => {
                         </span>
                     )) : null}
                     </div>
-                    <p className='font-semibold flex'>Rating: {rating > 7 ? <FaStar className='h-6 w-6 p-1'/> : <FaStarHalfAlt className='h-6 w-6 p-1'/>} {rating}</p>
+                    <p className='font-semibold flex'>
+                        Rating: {rating > 7 ? <FaStar className='h-6 w-6 p-1'/> : <FaStarHalfAlt className='h-6 w-6 p-1'/>} {rating}
+                    </p>
                 </div>
-                <div className='pt-5' dangerouslySetInnerHTML={{ __html: dataToShow.summary }} />
+                 <div className='pt-5' dangerouslySetInnerHTML={{ __html: dataToShow.summary }} /> {/* Show summary with HTML tags */}
             </div>
             
 

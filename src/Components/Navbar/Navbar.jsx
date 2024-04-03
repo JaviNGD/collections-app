@@ -27,7 +27,7 @@ const Navbar = () => {
                 </li>
                 <li>
                     <NavLink 
-                        to="/collections"
+                        to="/my-collections"
                         className={({isActive}) => isActive ? activeStyle : undefined}
                     >
                         My collections
@@ -38,7 +38,7 @@ const Navbar = () => {
                         to="/sign-in"
                         className={({isActive}) => isActive ? activeStyle : undefined}
                     >
-                        Sign In
+                        Sign out
                     </NavLink>
                 </li>
                 <li 

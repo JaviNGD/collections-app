@@ -11,8 +11,10 @@ import { FaRegCalendarAlt } from "react-icons/fa";
 function Collection() {
     const { collection } = useContext(CollectionsAppContext);
 
-    // Obtain the latest collection
-    const latestCollection = collection.length > 0 ? collection.slice(-1)[0] : null;
+    // Find the collection with the id from the URL
+    const currentPath = window.location.pathname;
+    const id = currentPath.substring(currentPath.lastIndexOf('/') + 1);
+    let selectedIndex = (id === 'latest' ? collection?.length - 1 : collection?.findIndex(item => item.id === id));
 
     return (
         <Layout>
@@ -20,16 +22,16 @@ function Collection() {
                 <Link to='/my-collections' className="absolute left-0">
                     <IoIosArrowBack className="h-6 w-6 text-black cursor-pointer"/>
                 </Link>
-                <h1>Collection</h1>
+                <div className="flex items-center font-semibold"><FaRegFolderOpen className="mr-2"/> {collection?.[selectedIndex]?.name}</div>
             </div>
-            {latestCollection && (
+            {collection?.[selectedIndex] && (
                 <div className='flex flex-col'>
-                <p>
-                    <div className="flex items-center"><FaRegFolderOpen className="mr-2"/> {latestCollection.name}</div>
-                    <div className="flex items-center"><HiMiniComputerDesktop className="mr-2"/> {latestCollection.totalItems}</div>
-                    <div className="flex items-center"><FaRegCalendarAlt className="mr-2"/> {latestCollection.date}</div>
+                <p className="mb-2 bg-gray-50 p-5 w-80">
+                    
+                    <div className="flex items-center"><HiMiniComputerDesktop className="mr-2"/> {collection?.[selectedIndex].totalItems}</div>
+                    <div className="flex items-center pb-2 border-b-2 border-black"><FaRegCalendarAlt className="mr-2"/> {collection?.[selectedIndex].date}</div>
                 </p>
-                    {latestCollection.items.map(item => 
+                    {collection?.[selectedIndex]?.items.map(item => 
                         <ItemCard key={item.id} data={item} />
                     )}
                 </div>

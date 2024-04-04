@@ -1,13 +1,14 @@
-import { useState, useEffect } from "react";
+import { useEffect, useContext } from "react";
 import Layout from "../../Components/Layout/Layout";
 import Card from "../../Components/Card/Card";
 import ShowDetail from "../../Components/ShowDetail/ShowDetail";
 import CreateCollection from "../../Components/CreateCollection/CreateCollection";
+import { CollectionsAppContext } from "../../Context/Context";
 
 const apiUrl = 'https://api.tvmaze.com/shows';
 
 function Home() {
-    const [items, setItems] = useState([]);
+    const { items, setItems } = useContext(CollectionsAppContext)
 
     useEffect(() => {
         const fetchData = async () => {

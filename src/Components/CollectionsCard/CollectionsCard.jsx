@@ -8,12 +8,12 @@ const CollectionsCard = props => {
 
     return (
         <div className="flex justify-between items-center mb-3 border shadow-md w-80 px-6 py-4">
-            <p>
-                <div className="flex items-center"><FaRegFolderOpen className="mr-2"/> {name}</div>
-                <div className="flex items-center"><HiMiniComputerDesktop className="mr-2"/> {totalItems}</div>
-                <div className="flex items-center"><FaRegCalendarAlt className="mr-2"/> {date}</div>
-            </p>
-            <MdOutlineKeyboardDoubleArrowRight />
+            <div>
+                <div className="flex items-center gap-2"><FaRegFolderOpen /> {name}</div>
+                <div className="flex items-center gap-2"><HiMiniComputerDesktop /> {totalItems}</div>
+                <div className="flex items-center gap-2"><FaRegCalendarAlt /> {date}</div>
+            </div>
+            <MdOutlineKeyboardDoubleArrowRight className="w-7 h-7"/>
         </div>
     )
 }

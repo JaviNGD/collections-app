@@ -14,14 +14,14 @@ function MyCollections() {
                 <Link to='/' className="absolute left-0">
                     <IoIosArrowBack className="h-6 w-6 text-black cursor-pointer"/>
                 </Link>
-                <h1>My Collections</h1>
+                <h1 className="font-semibold">My Collections</h1>
             </div>
             {
-                collection.map((collection, index) => (
-                    <Link key={index} to={`/collection/${index}`}>
-                        <CollectionsCard key={index} date={collection.date} name={collection.name} totalItems={collection.totalItems} />
+                collection.sort((a, b) => b.date - a.date).map((collection, index) => (
+                    <Link key={index} to={`/collection/${collection.id}`}>
+                        <CollectionsCard key={index} id={collection.id} date={collection.date} name={collection.name} totalItems={collection.totalItems} />
                     </Link>
-                ))
+                )).reverse()
             }
         </Layout>
     )

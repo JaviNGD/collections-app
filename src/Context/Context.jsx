@@ -1,8 +1,11 @@
 import { createContext, useState } from 'react'
+import { v4 as uuidv4 } from 'uuid';
 
 export const CollectionsAppContext = createContext()
 
 export const CollectionsAppProvider = ({children}) => {
+    // Items from the API
+    const [items, setItems] = useState([]);
 
     // Total items collection cart - Count
     const [totalItems, setTotalItems] = useState(0)
@@ -56,7 +59,7 @@ export const CollectionsAppProvider = ({children}) => {
 
     // Collection cart - create collection
     const [collection, setCollection] = useState([])
-    const [collectionName, setCollectionName] = useState('');
+    const [collectionName, setCollectionName] = useState('')
 
     // Collection cart - if collection name or cart is empty, alert user else create collection
     const handleClickCreate = () => {
@@ -70,7 +73,9 @@ export const CollectionsAppProvider = ({children}) => {
     }
 
     const handleCreate = (collectionName) => {
+        const collectionId = uuidv4(); // Generate a unique id for the collection
         const collectionToAdd = {
+            id: collectionId,
             date: new Date().toLocaleDateString(),
             name: collectionName !== '' ? collectionName : 'Collection',
             items: cartItems,
@@ -86,6 +91,8 @@ export const CollectionsAppProvider = ({children}) => {
 
     return (
         <CollectionsAppContext.Provider value={{
+            items, 
+            setItems,
             totalItems,
             setTotalItems,
             isShowDetailOpen,

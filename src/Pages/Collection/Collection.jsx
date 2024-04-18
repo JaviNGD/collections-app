@@ -26,11 +26,11 @@ function Collection() {
             </div>
             {collection?.[selectedIndex] && (
                 <div className='flex flex-col'>
-                <p className="mb-2 bg-gray-50 p-5 w-80">
+                <div className="mb-2 bg-gray-50 p-5 w-80">
                     
                     <div className="flex items-center"><HiMiniComputerDesktop className="mr-2"/> {collection?.[selectedIndex].totalItems}</div>
                     <div className="flex items-center pb-2 border-b-2 border-black"><FaRegCalendarAlt className="mr-2"/> {collection?.[selectedIndex].date}</div>
-                </p>
+                </div>
                     {collection?.[selectedIndex]?.items.map(item => 
                         <ItemCard key={item.id} data={item} />
                     )}

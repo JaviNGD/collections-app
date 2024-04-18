@@ -1,15 +1,38 @@
-import { createContext, useState } from 'react'
+import { createContext, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 export const CollectionsAppContext = createContext()
 
-export const CollectionsAppProvider = ({children}) => {
+const apiUrl = 'https://api.tvmaze.com/shows';
+
+export const CollectionsAppProvider = ({ children }) => {
     // Items from the API
     const [items, setItems] = useState([]);
 
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(`${apiUrl}`);
+                const data = await response.json();
+                setItems(data);
+            } catch (error) {
+                console.error(`An error has ocurred: ${error}`);
+            }
+        };
+        fetchData();
+    }, []);
+
     // Total items collection cart - Count
-    const [totalItems, setTotalItems] = useState(0)
-    
+    const [totalItems, setTotalItems] = useState(() => {
+        const storedTotalItems = localStorage.getItem('totalItems');
+        return storedTotalItems ? parseInt(storedTotalItems, 10) : 0;
+    });
+
+    // Save totalItems to localStorage when it changes
+    useEffect(() => {
+        localStorage.setItem('totalItems', totalItems.toString());
+    }, [totalItems]);
+
     // ShowDetail component - Open/Close
     const [isShowDetailOpen, setIsShowDetailOpen] = useState(false)
     const openShowDetail = () => {setIsShowDetailOpen(true)}
@@ -28,7 +51,15 @@ export const CollectionsAppProvider = ({children}) => {
     const [itemToShow, setItemToShow] = useState({})
 
     // Collection cart - state
-    const [cartItems, setCartItems] = useState([])
+    const [cartItems, setCartItems] = useState(() => {
+        const storedCartItems = localStorage.getItem('cartItems');
+        return storedCartItems ? JSON.parse(storedCartItems) : [];
+    });
+
+    // Save cartItems to localStorage when it changes
+    useEffect(() => {
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    }, [cartItems]);
 
     // Collection cart - Add / Delete item from cart
     const toggleItemInCollection = (event, data) => {
@@ -58,10 +89,28 @@ export const CollectionsAppProvider = ({children}) => {
     // Collection cart - handle create collection
 
     // Collection cart - create collection
-    const [collection, setCollection] = useState([])
-    const [collectionName, setCollectionName] = useState('')
+    const [collection, setCollection] = useState(() => {
+        const storedCollection = localStorage.getItem('collection');
+        return storedCollection ? JSON.parse(storedCollection) : [];
+    });
 
-    // Collection cart - if collection name or cart is empty, alert user else create collection
+    // Save collection to localStorage when it changes
+    useEffect(() => {
+        localStorage.setItem('collection', JSON.stringify(collection));
+    }, [collection]);
+
+    // Collection cart - Create Collection name
+    const [collectionName, setCollectionName] = useState(() => {
+        const storedCollectionName = localStorage.getItem('collectionName');
+        return storedCollectionName || '';
+    });
+    
+    // Save collectionName to localStorage when it changes
+    useEffect(() => {
+        localStorage.setItem('collectionName', collectionName);
+    }, [collectionName]);
+
+    // If collection name or cart is empty, alert user else create collection
     const handleClickCreate = () => {
         if (collectionName === '') {
             alert('Please enter a collection name')

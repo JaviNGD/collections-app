@@ -138,6 +138,13 @@ export const CollectionsAppProvider = ({ children }) => {
         setTotalItems(0)
     }
 
+    // Handle delete collection from local storage
+    const handleDelete = (id) => {
+        const newCollection = collection.filter(item => item.id !== id)
+        setCollection(newCollection)
+    }
+
+
     return (
         <CollectionsAppContext.Provider value={{
             items, 
@@ -166,7 +173,8 @@ export const CollectionsAppProvider = ({ children }) => {
             collectionName,
             setCollectionName,
             handleClickCreate,
-            handleCreate
+            handleCreate,
+            handleDelete
         }}>
             {children}
         </CollectionsAppContext.Provider>

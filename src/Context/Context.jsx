@@ -22,6 +22,22 @@ export const CollectionsAppProvider = ({ children }) => {
         fetchData();
     }, []);
 
+    // Get items by title
+    const [searchByTitle, setSearchByTitle] = useState('');
+
+    // Filter items by title
+    const [filteredItems, setFilteredItems] = useState([]);
+
+    const filteredItemsByTitle = (items, searchByTitle) => {
+        return items?.filter(item => item.name.toLowerCase().includes(searchByTitle.toLowerCase()));
+    }
+
+    useEffect (() => { 
+        if (searchByTitle) {
+            setFilteredItems(filteredItemsByTitle(items, searchByTitle))
+        }
+    }, [items, searchByTitle]);
+
     // Total items collection cart - Count
     const [totalItems, setTotalItems] = useState(() => {
         const storedTotalItems = localStorage.getItem('totalItems');
@@ -144,11 +160,14 @@ export const CollectionsAppProvider = ({ children }) => {
         setCollection(newCollection)
     }
 
-
     return (
         <CollectionsAppContext.Provider value={{
             items, 
             setItems,
+            searchByTitle,
+            setSearchByTitle,
+            filteredItems,
+            setFilteredItems,
             totalItems,
             setTotalItems,
             isShowDetailOpen,

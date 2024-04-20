@@ -6,7 +6,7 @@ import { HiMiniComputerDesktop } from "react-icons/hi2";
 
 const Navbar = () => {
     const activeStyle = 'font-semibold';
-    const { searchByTitle, setSearchByTitle, totalItems, toggleCheckoutSideMenu } = useContext(CollectionsAppContext);
+    const { searchByTitle, setSearchByTitle, totalItems, toggleCheckoutSideMenu, setSearchByGenre } = useContext(CollectionsAppContext);
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -15,6 +15,7 @@ const Navbar = () => {
         if (e.key === 'Enter') {
             // If the search input is not empty and the user is not on the home page, navigate to the home page
             if (searchByTitle.trim() && location.pathname !== "/") {
+                setSearchByGenre(null);
                 navigate('/');
             }
         }

@@ -4,19 +4,23 @@ import Home from '../Home/Home'
 import Account from '../Account/Account'
 import Collection from '../Collection/Collection'
 import MyCollections from '../MyCollections/MyCollections'
-import SignIn from '../SignIn/SignIn'
+import Register from '../Register/Register'
+import Login from '../Login/Login'
 import NotFound from '../NotFound/NotFound'
 import Navbar from '../../Components/Navbar/Navbar'
 import './App.css'
 
+
 const AppRoutes = () => {
   let routes = useRoutes([
     { path : '/', element: <Home /> },
+    { path : '/:genre', element: <Home />},
     { path : '/account', element: <Account /> },
     { path : '/collection/:id', element: <Collection /> },
     { path : '/my-collections/latest', element: <Collection /> },
     { path : '/my-collections', element: <MyCollections /> },
-    { path : '/sign-in', element: <SignIn /> },
+    { path : '/register', element: <Register /> },
+    { path : '/login', element: <Login />},
     { path : '*', element: <NotFound /> }
   ])
   return routes

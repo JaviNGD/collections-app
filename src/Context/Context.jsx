@@ -32,11 +32,30 @@ export const CollectionsAppProvider = ({ children }) => {
         return items?.filter(item => item.name.toLowerCase().includes(searchByTitle.toLowerCase()));
     }
 
+    // Search by genre
+    const [searchByGenre, setSearchByGenre] = useState(null);
+
+    const filteredItemsByGenre = (items, searchByGenre) => {
+        return items?.filter(item => item.genres.includes(searchByGenre));
+    }
+
+    // Filter items by title and genre
     useEffect (() => { 
+        let filtered = items;
+
+        // Filter by title
         if (searchByTitle) {
-            setFilteredItems(filteredItemsByTitle(items, searchByTitle))
+            filtered = filteredItemsByTitle(items, searchByTitle);
         }
-    }, [items, searchByTitle]);
+
+        // Filter by genre
+        if (searchByGenre) {
+            filtered = filteredItemsByGenre(filtered, searchByGenre);
+        }
+
+        setFilteredItems(filtered);
+    }, [items, searchByTitle, searchByGenre]);
+
 
     // Total items collection cart - Count
     const [totalItems, setTotalItems] = useState(() => {
@@ -160,6 +179,21 @@ export const CollectionsAppProvider = ({ children }) => {
         setCollection(newCollection)
     }
 
+    // Get all genres from items
+    const [genres, setGenres] = useState([]);
+
+    useEffect(() => {
+        const allGenres = items.reduce((acc, curr) => {
+            curr.genres.forEach(genre => {
+                if (!acc.includes(genre)) {
+                    acc.push(genre);
+                }
+            });
+            return acc;
+        }, []);
+        setGenres(allGenres);
+    }, [items]);
+
     return (
         <CollectionsAppContext.Provider value={{
             items, 
@@ -193,7 +227,12 @@ export const CollectionsAppProvider = ({ children }) => {
             setCollectionName,
             handleClickCreate,
             handleCreate,
-            handleDelete
+            handleDelete,
+            genres,
+            setGenres,
+            searchByGenre,
+            setSearchByGenre,
+            filteredItemsByGenre
         }}>
             {children}
         </CollectionsAppContext.Provider>

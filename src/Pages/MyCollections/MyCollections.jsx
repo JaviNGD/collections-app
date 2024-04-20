@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 
 function MyCollections() {
-    const { collection, handleDelete } = useContext(CollectionsAppContext);
+    const { collection, handleDelete, setSearchByGenre } = useContext(CollectionsAppContext);
+    setSearchByGenre(null);
 
     const handleClickDelete = (event, id) => {
         event.stopPropagation();

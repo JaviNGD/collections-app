@@ -6,7 +6,6 @@ import Collection from '../Collection/Collection'
 import MyCollections from '../MyCollections/MyCollections'
 import Register from '../Register/Register'
 import Login from '../Login/Login'
-import NotFound from '../NotFound/NotFound'
 import Navbar from '../../Components/Navbar/Navbar'
 import './App.css'
 
@@ -20,8 +19,7 @@ const AppRoutes = () => {
     { path : '/my-collections/latest', element: <Collection /> },
     { path : '/my-collections', element: <MyCollections /> },
     { path : '/register', element: <Register /> },
-    { path : '/login', element: <Login />},
-    { path : '*', element: <NotFound /> }
+    { path : '/login', element: <Login />}
   ])
   return routes
 }

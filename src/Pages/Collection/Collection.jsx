@@ -9,7 +9,8 @@ import { HiMiniComputerDesktop } from "react-icons/hi2";
 import { FaRegCalendarAlt, FaTrashAlt } from "react-icons/fa";
 
 function Collection() {
-    const { collection, handleDelete } = useContext(CollectionsAppContext);
+    const { collection, handleDelete, setSearchByGenre } = useContext(CollectionsAppContext);
+    setSearchByGenre(null);
     const navigate = useNavigate();
 
     // Find the collection with the id from the URL

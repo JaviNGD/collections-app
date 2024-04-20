@@ -4,24 +4,25 @@ import Card from "../../Components/Card/Card";
 import ShowDetail from "../../Components/ShowDetail/ShowDetail";
 import CreateCollection from "../../Components/CreateCollection/CreateCollection";
 import { CollectionsAppContext } from "../../Context/Context";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function Home() {
     const { items, searchByTitle, filteredItems, genres, searchByGenre, setSearchByGenre } = useContext(CollectionsAppContext);
-
+    const location = useLocation();
+    
     // Render search results or all items
     const renderView = () => {
         let itemsToRender = items;
-    
+
         if (searchByTitle?.length > 0) {
             itemsToRender = filteredItems;
         }
-    
+
         if (searchByGenre) {
             itemsToRender = itemsToRender.filter(item => item.genres.includes(searchByGenre));
         }
-    
-        if (itemsToRender.length > 0) {
+
+        if ((location.pathname === '/' || location.pathname.match(searchByGenre)) && itemsToRender.length > 0) { // Check if path is '/' or '/genre' and render items
             return itemsToRender.map(item => (
                 <Card key={item.id} data={item} />
             ));
@@ -42,19 +43,19 @@ function Home() {
                 <div className="flex justify-center flex-wrap">
                     {/* Add the "All Genres" button */}
                     <Link 
-                        to="/" // Navigate to the home route when "All Genres" is clicked
-                        className={`px-3 py-1 bg-gray-200 hover:bg-blue-300 rounded-full mb-2 mr-2 ${searchByGenre === null ? 'bg-blue-300' : ''}`}
-                        onClick={() => setSearchByGenre(null)} // Set search by genre to null to show all items
+                        to="/" 
+                        className={`px-4 py-1 m-1 rounded-md border border-gray-300 hover:bg-blue-200 ${searchByGenre === null ? 'bg-blue-300' : 'bg-white'}`}
+                        onClick={() => setSearchByGenre(null)}
                     >
                         All Genres
                     </Link>
-                    {/* Render other genre buttons */}
-                    {genres.sort().map(genre => (
+                    {/* Render all genres */}
+                    {genres.map(genre => (
                         <Link 
+                            to={`/${genre}`} 
                             key={genre} 
-                            to={`/${genre}`} // Navigate to the route with the selected genre
-                            className={`px-3 py-1 bg-gray-200 hover:bg-blue-300 rounded-full mb-2 mr-2 ${searchByGenre === genre ? 'bg-blue-300' : ''}`}
-                            onClick={() => setSearchByGenre(genre)} // Set search by genre to the selected genre
+                            className={`px-4 py-1 m-1 rounded-md border border-gray-300 hover:bg-blue-200 ${searchByGenre === genre ? 'bg-blue-300' : 'bg-white'}`}
+                            onClick={() => setSearchByGenre(genre)}
                         >
                             {genre}
                         </Link>
@@ -63,15 +64,15 @@ function Home() {
             </div>
         );
     };
-    
 
     return (
         <Layout>
-            <div className="flex justify-center space-x-4 mb-4">
-                {
-                    renderGenres()
-                }
-            </div>
+            {/* Render genre tags only when on the home page or a genre-specific page */}
+            {(location.pathname === '/' || location.pathname.match(searchByGenre)) && (
+                <div className="flex justify-center space-x-4 mb-4">
+                    {renderGenres()}
+                </div>
+            )}
             <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                 {
                     renderView()

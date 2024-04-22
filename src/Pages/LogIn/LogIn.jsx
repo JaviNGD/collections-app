@@ -39,7 +39,7 @@ function Login() {
                         // Set the logged in user
                         setLoggedInUser(storedUsers[i]);
                         // Redirect to home page
-                        navigate('/');
+                        navigate('/collections-app/');
                         // Exit the function after successful login
                         return;
                     } else {
@@ -87,7 +87,7 @@ function Login() {
                     <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">Login</button>
                 </form>
                 <div className="mt-4 text-center">
-                    Don&apos;t have an account? <a href="/register" className="text-blue-500 hover:underline">Register</a>
+                    Don&apos;t have an account? <a href="/collections-app/register" className="text-blue-500 hover:underline">Register</a>
                 </div>
             </div>
         </Layout>

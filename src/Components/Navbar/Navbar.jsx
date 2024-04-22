@@ -14,9 +14,9 @@ const Navbar = () => {
         // Verify if the user pressed the Enter key
         if (e.key === 'Enter') {
             // If the search input is not empty and the user is not on the home page, navigate to the home page
-            if (searchByTitle.trim() && location.pathname !== "/") {
+            if (searchByTitle.trim() && location.pathname !== "/collections-app/") {
                 setSearchByGenre(null);
-                navigate('/');
+                navigate('/collections-app/');
             }
         }
     };
@@ -25,12 +25,12 @@ const Navbar = () => {
         <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light bg-white">
             <ul className="flex items-center">
             <li className="font-semibold text-xl">
-                <NavLink to="/" onClick={() => setSearchByGenre(null)}>
+                <NavLink to="/collections-app/" onClick={() => setSearchByGenre(null)}>
                     <BiSolidMoviePlay className="h-10 w-10 hover:text-blue-500"/>
                 </NavLink>
             </li>
             <div className="font-bold">
-                <NavLink to="/" onClick={() => setSearchByGenre(null)}>TV Collection</NavLink>
+                <NavLink to="/collections-app/" onClick={() => setSearchByGenre(null)}>TV Collection</NavLink>
             </div>
                 <input 
                     type="text" 
@@ -46,7 +46,7 @@ const Navbar = () => {
                     <>
                         <li>
                             <NavLink 
-                                to="/account"
+                                to="/collections-app/account"
                                 className={({isActive}) => isActive ? activeStyle : undefined}
                             >
                                 My account
@@ -54,7 +54,7 @@ const Navbar = () => {
                         </li>
                         <li>
                             <NavLink 
-                                to="/my-collections"
+                                to="/collections-app/my-collections"
                                 className={({isActive}) => isActive ? activeStyle : undefined}
                             >
                                 My collections
@@ -62,7 +62,7 @@ const Navbar = () => {
                         </li>
                         <li>
                             <NavLink 
-                                to="/register"
+                                to="/collections-app/register"
                                 onClick={() => { setLoggedInUser(null); localStorage.removeItem('loggedInUser'); }}
                                 className={({isActive}) => isActive ? activeStyle : undefined}
                             >
@@ -81,7 +81,7 @@ const Navbar = () => {
                     <>
                         <li>
                             <NavLink 
-                                to="/login"
+                                to="/collections-app/login"
                                 className={({isActive}) => isActive ? activeStyle : undefined}
                             >
                                 Login
@@ -89,7 +89,7 @@ const Navbar = () => {
                         </li>
                         <li>
                             <NavLink 
-                                to="/register"
+                                to="/collections-app/register"
                                 className={({isActive}) => isActive ? activeStyle : undefined}
                             >
                                 Register

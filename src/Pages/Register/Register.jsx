@@ -55,7 +55,7 @@ function Register() {
         const updatedUsers = [...storedUsers, newUser];
         localStorage.setItem('users', JSON.stringify(updatedUsers));
         alert('User registered successfully');
-        navigate('/');
+        navigate('/collections-app/');
         setLoggedInUser(newUser);
     };
 
@@ -128,7 +128,7 @@ function Register() {
                     <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">Register</button>
                 </form>
                 <div className="mt-4 text-center">
-                    Already have an account? <a href="/login" className="text-blue-500">Login</a>
+                    Already have an account? <a href="/collections-app/login" className="text-blue-500">Login</a>
                 </div>
             </div>
         </Layout>

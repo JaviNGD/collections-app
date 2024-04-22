@@ -20,7 +20,7 @@ function Collection() {
     
     const handleClickDelete = () => {
         handleDelete(collection[selectedIndex].id);
-        navigate('/my-collections');        
+        navigate('/collections-app/my-collections');        
     }
 
     // If the user is not the owner of the collection, redirect them to the home page
@@ -28,7 +28,7 @@ function Collection() {
         if (selectedIndex !== undefined && selectedIndex !== -1) {
             const selectedCollection = collection[selectedIndex];
             if (selectedCollection.userId !== loggedInUser.id) {
-                navigate('/');
+                navigate('/collections-app/');
             }
         }
     }, [selectedIndex, collection, loggedInUser, navigate]);
@@ -36,7 +36,7 @@ function Collection() {
     return (
         <Layout>
             <div className="flex items-center justify-center relative w-80 mb-6">
-                <Link to='/my-collections' className="absolute left-0">
+                <Link to='/collections-app/my-collections' className="absolute left-0">
                     <IoIosArrowBack className="h-6 w-6 text-black cursor-pointer"/>
                 </Link>
                 <div className="flex items-center font-semibold"><FaRegFolderOpen className="mr-2"/> {collection?.[selectedIndex]?.name}</div>

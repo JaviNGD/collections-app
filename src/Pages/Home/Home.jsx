@@ -22,7 +22,7 @@ function Home() {
             itemsToRender = itemsToRender.filter(item => item.genres.includes(searchByGenre));
         }
 
-        if ((location.pathname === '/' || location.pathname.match(searchByGenre)) && itemsToRender.length > 0) { // Check if path is '/' or '/genre' and render items
+        if ((location.pathname === '/collections-app/' || location.pathname.match(`/collections-app/${searchByGenre}`)) && itemsToRender.length > 0) { // Check if path is '/collections-app/' or '/collections-app/genre' and render items
             return itemsToRender.map(item => (
                 <Card key={item.id} data={item} />
             ));
@@ -43,7 +43,7 @@ function Home() {
                 <div className="flex justify-center flex-wrap">
                     {/* Add the "All Genres" button */}
                     <Link 
-                        to="/" 
+                        to="/collections-app/" 
                         className={`px-4 py-1 m-1 rounded-md border border-gray-300 hover:bg-blue-200 ${searchByGenre === null ? 'bg-blue-300' : 'bg-white'}`}
                         onClick={() => setSearchByGenre(null)}
                     >
@@ -52,7 +52,7 @@ function Home() {
                     {/* Render all genres */}
                     {genres.map(genre => (
                         <Link 
-                            to={`/${genre}`} 
+                            to={`/collections-app/${genre}`} 
                             key={genre} 
                             className={`px-4 py-1 m-1 rounded-md border border-gray-300 hover:bg-blue-200 ${searchByGenre === genre ? 'bg-blue-300' : 'bg-white'}`}
                             onClick={() => setSearchByGenre(genre)}
@@ -68,7 +68,7 @@ function Home() {
     return (
         <Layout>
             {/* Render genre tags only when on the home page or a genre-specific page */}
-            {(location.pathname === '/' || location.pathname.match(searchByGenre)) && (
+            {(location.pathname === '/collections-app/' || location.pathname.match(`/collections-app/${searchByGenre}`)) && (
                 <div className="flex justify-center space-x-4 mb-4">
                     {renderGenres()}
                 </div>

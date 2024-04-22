@@ -7,7 +7,7 @@ const CollectionsCard = props => {
     const { id, date, name, totalItems, handleDelete } = props;
 
     const handleNavigate = () => {
-        window.location.href = `/collection/${id}`;
+        window.location.href = `/collections-app/collection/${id}`;
     }
 
     return (

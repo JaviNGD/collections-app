@@ -12,14 +12,14 @@ import './App.css'
 
 const AppRoutes = () => {
   let routes = useRoutes([
-    { path : '/', element: <Home /> },
-    { path : '/:genre', element: <Home />},
-    { path : '/account', element: <Account /> },
-    { path : '/collection/:id', element: <Collection /> },
-    { path : '/my-collections/latest', element: <Collection /> },
-    { path : '/my-collections', element: <MyCollections /> },
-    { path : '/register', element: <Register /> },
-    { path : '/login', element: <Login />}
+    { path : '/collections-app/', element: <Home /> },
+    { path : '/collections-app/:genre', element: <Home />},
+    { path : '/collections-app/account', element: <Account /> },
+    { path : '/collections-app/collection/:id', element: <Collection /> },
+    { path : '/collections-app/my-collections/latest', element: <Collection /> },
+    { path : '/collections-app/my-collections', element: <MyCollections /> },
+    { path : '/collections-app/register', element: <Register /> },
+    { path : '/collections-app/login', element: <Login />}
   ])
   return routes
 }

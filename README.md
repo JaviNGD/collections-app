@@ -1,8 +1,46 @@
-# React + Vite
+# TV Collection APP 📼 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Application built with React + Vite that allows users to register, log in, create and save collections of TV series.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<img src="https://simpleicons.org/icons/react.svg" alt="" width="32" height="32"> **React**
+
+<img src="https://simpleicons.org/icons/vite.svg" alt="" width="32" height="32"> **Vite**
+
+<img src="https://simpleicons.org/icons/tailwindcss.svg" alt="Tailwind CSS" width="32" height="32"> **Tailwind CSS**  
+
+<img src="https://simpleicons.org/icons/git.svg" alt="Git" width="32" height="32"> **Git**  
+
+## Demo
+
+View <a href='javingd.github.io/collections-app/' target='_blank' rel="noreferrer">app preview</a>
+
+## Run Locally 
+
+### Clone the project
+```plaintext
+git clone https://github.com/JaviNGD/collections-app.git
+```
+
+### Go to the project directory
+```plaintext
+cd collections-app
+```
+
+### Install dependencies
+```plaintext
+  npm install
+```
+
+### Start the server
+```plaintext
+  npm run dev
+```
+
+### See page in
+```plaintext
+  http://localhost:5173/collections-app/
+```
+
+🎥

@@ -25,8 +25,23 @@ function Account() {
         <h1 className="font-semibold">My Account</h1>
       </div>
       <div className="flex flex-col items-center">
-        <h2 className="font-semibold text-lg">Welcome, {loggedInUser.name}</h2>
-        <p className="text-sm">Email: {loggedInUser.email}</p>
+        <h2 className="font-semibold text-lg mb-10">Welcome, {loggedInUser.name}</h2>
+        <table className="table-auto">
+        <tbody>
+          <tr>
+            <th className="w-3/4 text-left pr-14">Name</th>
+            <td className="w-3/4 text-left">{loggedInUser.name}</td>
+          </tr>
+          <tr>
+            <th className="w-3/4 text-left pr-14">Last Name</th>
+            <td className="w-3/4 text-left">{loggedInUser.lastName}</td>
+          </tr>
+          <tr>
+            <th className="w-3/4 text-left pr-14">Email</th>
+            <td className="w-3/4 text-left">{loggedInUser.email}</td>
+          </tr>
+        </tbody>
+      </table>
       </div>
     </Layout>
   )

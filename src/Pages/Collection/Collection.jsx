@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { CollectionsAppContext } from "../../Context/Context";
 import { Link, useNavigate } from "react-router-dom";
 import ItemCard from "../../Components/ItemCard/ItemCard";
@@ -9,19 +9,29 @@ import { HiMiniComputerDesktop } from "react-icons/hi2";
 import { FaRegCalendarAlt, FaTrashAlt } from "react-icons/fa";
 
 function Collection() {
-    const { collection, handleDelete, setSearchByGenre } = useContext(CollectionsAppContext);
-    setSearchByGenre(null);
+    const { collection, handleDelete, setSearchByGenre, loggedInUser } = useContext(CollectionsAppContext);
     const navigate = useNavigate();
+    setSearchByGenre(null);
 
     // Find the collection with the id from the URL
     const currentPath = window.location.pathname;
     const id = currentPath.substring(currentPath.lastIndexOf('/') + 1);
     let selectedIndex = (id === 'latest' ? collection?.length - 1 : collection?.findIndex(item => item.id === id));
-
+    
     const handleClickDelete = () => {
         handleDelete(collection[selectedIndex].id);
         navigate('/my-collections');        
     }
+
+    // If the user is not the owner of the collection, redirect them to the home page
+    useEffect(() => {
+        if (selectedIndex !== undefined && selectedIndex !== -1) {
+            const selectedCollection = collection[selectedIndex];
+            if (selectedCollection.userId !== loggedInUser.id) {
+                navigate('/');
+            }
+        }
+    }, [selectedIndex, collection, loggedInUser, navigate]);
 
     return (
         <Layout>

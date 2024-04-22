@@ -6,7 +6,7 @@ import { HiMiniComputerDesktop } from "react-icons/hi2";
 
 const Navbar = () => {
     const activeStyle = 'font-semibold';
-    const { searchByTitle, setSearchByTitle, totalItems, toggleCheckoutSideMenu, setSearchByGenre } = useContext(CollectionsAppContext);
+    const { searchByTitle, setSearchByTitle, totalItems, toggleCheckoutSideMenu, setSearchByGenre, setLoggedInUser, loggedInUser } = useContext(CollectionsAppContext);
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -42,37 +42,61 @@ const Navbar = () => {
                 />
             </ul>
             <ul className="flex items-center gap-4">
-                <li>
-                    <NavLink 
-                        to="/account"
-                        className={({isActive}) => isActive ? activeStyle : undefined}
-                    >
-                        My account
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink 
-                        to="/my-collections"
-                        className={({isActive}) => isActive ? activeStyle : undefined}
-                    >
-                        My collections
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink 
-                        to="/sign-in"
-                        className={({isActive}) => isActive ? activeStyle : undefined}
-                    >
-                        Sign out
-                    </NavLink>
-                </li>
-                <li 
-                    className="flex hover:text-blue-500 cursor-pointer"
-                    onClick={toggleCheckoutSideMenu}
-                >
-                    <HiMiniComputerDesktop className="w-6 h-6 p-1"/>
-                    <div>{totalItems}</div>
-                </li>
+                {loggedInUser ? (
+                    <>
+                        <li>
+                            <NavLink 
+                                to="/account"
+                                className={({isActive}) => isActive ? activeStyle : undefined}
+                            >
+                                My account
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink 
+                                to="/my-collections"
+                                className={({isActive}) => isActive ? activeStyle : undefined}
+                            >
+                                My collections
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink 
+                                to="/register"
+                                onClick={() => { setLoggedInUser(null); localStorage.removeItem('loggedInUser'); }}
+                                className={({isActive}) => isActive ? activeStyle : undefined}
+                            >
+                                Sign out
+                            </NavLink>
+                        </li>
+                        <li 
+                            className="flex hover:text-blue-500 cursor-pointer"
+                            onClick={toggleCheckoutSideMenu}
+                        >
+                            <HiMiniComputerDesktop className="w-6 h-6 p-1"/>
+                            <div>{totalItems}</div>
+                        </li>
+                    </>
+                ) : (
+                    <>
+                        <li>
+                            <NavLink 
+                                to="/login"
+                                className={({isActive}) => isActive ? activeStyle : undefined}
+                            >
+                                Login
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink 
+                                to="/register"
+                                className={({isActive}) => isActive ? activeStyle : undefined}
+                            >
+                                Register
+                            </NavLink>
+                        </li>
+                    </>
+                )}  
             </ul>
         </nav>
     );

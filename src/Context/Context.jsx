@@ -163,7 +163,8 @@ export const CollectionsAppProvider = ({ children }) => {
             date: new Date().toLocaleDateString(),
             name: collectionName !== '' ? collectionName : 'Collection',
             items: cartItems,
-            totalItems: totalItems
+            totalItems: totalItems,
+            userId: loggedInUser.id
         }
         setCollection([...collection, collectionToAdd])
         closeCheckoutSideMenu()
@@ -193,6 +194,20 @@ export const CollectionsAppProvider = ({ children }) => {
         }, []);
         setGenres(allGenres);
     }, [items]);
+
+    // Retrieve the stored users from local storage
+    const storedUsers = JSON.parse(localStorage.getItem('users'));
+
+    // Set logged in user
+    const [loggedInUser, setLoggedInUser] = useState(() => {
+        const storedUser = localStorage.getItem('loggedInUser');
+        return storedUser ? JSON.parse(storedUser) : null;
+    });
+
+    // Save loggedInUser to localStorage when it changes
+    useEffect(() => {
+        localStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
+    }, [loggedInUser]);
 
     return (
         <CollectionsAppContext.Provider value={{
@@ -232,7 +247,10 @@ export const CollectionsAppProvider = ({ children }) => {
             setGenres,
             searchByGenre,
             setSearchByGenre,
-            filteredItemsByGenre
+            filteredItemsByGenre,
+            storedUsers,
+            loggedInUser,
+            setLoggedInUser
         }}>
             {children}
         </CollectionsAppContext.Provider>

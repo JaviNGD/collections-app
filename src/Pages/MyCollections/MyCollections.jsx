@@ -2,12 +2,22 @@ import Layout from "../../Components/Layout/Layout";
 import CollectionsCard from "../../Components/CollectionsCard/CollectionsCard";
 import { CollectionsAppContext } from "../../Context/Context";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 
 function MyCollections() {
-    const { collection, handleDelete, setSearchByGenre } = useContext(CollectionsAppContext);
+    const { collection, handleDelete, setSearchByGenre, loggedInUser } = useContext(CollectionsAppContext);
+    const navigate = useNavigate();
     setSearchByGenre(null);
+
+    // Redirect to the register page if the user is not logged in and return null to prevent the rest of the code from running
+    if (loggedInUser === null) {
+        navigate('/register');
+        return null;
+    }
+
+    // Filter the collections by the logged in user
+    const filteredCollections = collection.filter(item => item.userId === loggedInUser.id);
 
     const handleClickDelete = (event, id) => {
         event.stopPropagation();
@@ -23,7 +33,7 @@ function MyCollections() {
                 <h1 className="font-semibold">My Collections</h1>
             </div>
             {
-                collection
+                filteredCollections
                     .sort((a, b) => b.date - a.date)
                     .map((collection, index) => {
                         return (

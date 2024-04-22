@@ -29,6 +29,14 @@ function Register() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        // Check if the password is at least 4 characters long and not more than 20 characters
+        if (formData.password.length < 4 || formData.password.length > 20) {
+            setError('Password must be between 4 and 20 characters long');
+            return;
+        }
+
+        // Check if the password and confirm password match
         if (formData.password !== formData.confirmPassword) {
             setError('Passwords do not match');
             return;
@@ -44,6 +52,7 @@ function Register() {
             return;
         }
     
+        // Create a new user object
         const newUser = {
             id: uuidv4(),
             name: formData.name,
@@ -52,6 +61,7 @@ function Register() {
             password: encryptedPassword  // Save the encrypted password
         };
     
+        // Store the new user in the local storage
         const updatedUsers = [...storedUsers, newUser];
         localStorage.setItem('users', JSON.stringify(updatedUsers));
         alert('User registered successfully');
@@ -61,9 +71,9 @@ function Register() {
 
     return (
         <Layout>
-            <div className="max-w-md mx-auto mt-8">
+            <div className="max-w-xl mx-auto mt-8">
                 <h1 className="text-3xl font-bold mb-4">Register</h1>
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-4  mx-auto w-96">
                     <div>
                         <label htmlFor="name" className="block font-medium">Name</label>
                         <input 

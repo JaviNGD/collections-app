@@ -44,7 +44,7 @@ function Home() {
                     {/* Add the "All Genres" button */}
                     <Link 
                         to="/collections-app/" 
-                        className={`px-4 py-1 m-1 rounded-md border border-gray-300 hover:bg-blue-200 ${searchByGenre === null ? 'bg-blue-300' : 'bg-white'}`}
+                        className={`px-4 py-1 m-1 rounded-md border border-gray-300 hover:bg-blue-200 ${searchByGenre === null ? 'bg-blue-300 font-semibold' : 'bg-white'}`}
                         onClick={() => setSearchByGenre(null)}
                     >
                         All Genres
@@ -54,7 +54,7 @@ function Home() {
                         <Link 
                             to={`/collections-app/${genre}`} 
                             key={genre} 
-                            className={`px-4 py-1 m-1 rounded-md border border-gray-300 hover:bg-blue-200 ${searchByGenre === genre ? 'bg-blue-300' : 'bg-white'}`}
+                            className={`px-4 py-1 m-1 rounded-md border border-gray-300 hover:bg-blue-200 ${searchByGenre === genre ? 'bg-blue-300 font-semibold' : 'bg-white'}`}
                             onClick={() => setSearchByGenre(genre)}
                         >
                             {genre}

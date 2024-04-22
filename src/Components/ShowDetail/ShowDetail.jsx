@@ -1,5 +1,4 @@
 import { useContext } from 'react';
-import './showDetail.css';
 import { IoClose } from "react-icons/io5";
 import { CollectionsAppContext } from '../../Context/Context';
 import { FaStarHalfAlt } from "react-icons/fa";
@@ -15,7 +14,7 @@ const ShowDetail = () => {
     const isInCart = cartItems.some(item => item.id === dataToShow.id);
 
     return (
-        <div className={`${isShowDetailOpen ? 'flex' : 'hidden'} show-detail flex-col fixed border shadow-md rounded-lg bg-white/90`}>
+        <div className={`${isShowDetailOpen ? 'flex' : 'hidden'} w-1/2 mt-pb-4 flex-col fixed border shadow-md rounded-lg bg-white/90`}>
             <div className='flex justify-between items-center pt-6'>
                 <h2 className='font-medium text-xl pl-6'>Details</h2>
                 <div className='pr-6'>

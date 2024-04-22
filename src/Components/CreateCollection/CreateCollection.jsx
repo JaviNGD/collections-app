@@ -39,20 +39,22 @@ const CreateCollection = () => {
                 onChange={handleChange}
                 className="w-90% m-4 p-2 border-b border-gray-300 focus:outline-none focus:border-black"
             />
-            <div className='overflow-y-scroll'>
+            <div className='overflow-y-scroll mb-16'>
                 {cartItems.map(item => <ItemCard key={item.id} data={item} deleteItem={deleteItem} />)}
             </div>
-            <div className="flex p-5 text-lg flex-1 bg-white w-full">
-                <HiMiniComputerDesktop className="w-7 h-7 mr-2"/>
-                <p>Total programs: </p>
-                <p className='font-semibold ml-2'>{totalItems}</p>
-                <Link 
-                    to={loggedInUser ? (collectionName !== '' && cartItems.length > 0 ? '/collections-app/my-collections/latest' : '#') : '/collections-app/login'} 
-                    onClick={handleLoggedInUser} 
-                    className='absolute right-0 mr-7 px-6 py-1 bg-blue-800 text-white rounded-lg hover:bg-blue-600 focus:outline-none'
-                >
-                    Create
-                </Link>
+            <div className="absolute inset-x-0 bottom-0">
+                <div className="flex p-5 text-lg flex-1 bg-white w-full">
+                    <HiMiniComputerDesktop className="w-7 h-7 mr-2"/>
+                    <p>Total programs: </p>
+                    <p className='font-semibold ml-2'>{totalItems}</p>
+                    <Link 
+                        to={loggedInUser ? (collectionName !== '' && cartItems.length > 0 ? '/collections-app/my-collections/latest' : '#') : '/collections-app/login'} 
+                        onClick={handleLoggedInUser} 
+                        className='absolute right-0 mr-7 px-6 py-1 bg-blue-800 text-white rounded-lg hover:bg-blue-600 focus:outline-none'
+                    >
+                        Create
+                    </Link>
+                </div>
             </div>
         </aside>
     )

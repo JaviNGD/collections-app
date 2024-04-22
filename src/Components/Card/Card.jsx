@@ -27,6 +27,7 @@ const Card = ({ data }) => {
                     className="w-full h-full object-cover rounded-lg"
                     src={data.image?.medium} 
                     alt={data.name}
+                    loading="lazy"
                 />
                 <button onClick={(event) => toggleItemInCollection(event, data)} className='absolute top-0 right-0 flex justify-center items-center bg-white shadow-md text-black w-6 h-6 rounded-full m-2'>
                     {isInCart ? <FaCheck className='text-green-500' /> : <IoMdAdd className='hover:text-green-500'/>}

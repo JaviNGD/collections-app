@@ -69,13 +69,6 @@ const Navbar = () => {
                                 Sign out
                             </NavLink>
                         </li>
-                        <li 
-                            className="flex hover:text-blue-500 cursor-pointer"
-                            onClick={toggleCheckoutSideMenu}
-                        >
-                            <HiMiniComputerDesktop className="w-6 h-6 p-1"/>
-                            <div>{totalItems}</div>
-                        </li>
                     </>
                 ) : (
                     <>
@@ -96,7 +89,14 @@ const Navbar = () => {
                             </NavLink>
                         </li>
                     </>
-                )}  
+                )}
+                <li 
+                    className="flex hover:text-blue-500 cursor-pointer"
+                    onClick={toggleCheckoutSideMenu}
+                >
+                    <HiMiniComputerDesktop className="w-6 h-6 p-1"/>
+                    <div>{totalItems}</div>
+                </li>  
             </ul>
         </nav>
     );

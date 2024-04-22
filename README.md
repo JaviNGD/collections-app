@@ -14,7 +14,7 @@ Application built with React + Vite that allows users to register, log in, creat
 
 ## Demo
 
-View <a href='javingd.github.io/collections-app/' target='_blank' rel="noreferrer">app preview</a>
+View [app preview](https://javingd.github.io/collections-app/)
 
 ## Run Locally 
 
